@@ -21,9 +21,9 @@ export default function YouTubeFeed() {
         const fetch = async () => {
             try {
                 const data = await getYoutubeVideos();
-                if (data && data.length > 0) {
+                if (Array.isArray(data) && data.length > 0) {
                     // @ts-ignore
-                    setVideos(data.slice(0, 8) as YoutubeVideo[]); // Take latest 8
+                    setVideos(data);
                 }
             } catch (e) {
                 console.error("Failed to fetch videos:", e);

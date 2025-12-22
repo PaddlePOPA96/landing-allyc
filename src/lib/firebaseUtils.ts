@@ -17,9 +17,19 @@ export const addPost = async (image: string, permalink: string) => {
 };
 
 export const getPosts = async () => {
+    const { getCachedData, setCachedData, CACHE_CONFIG } = await import("./cache");
+
+    // Check cache first
+    const cached = getCachedData("instagram_posts", CACHE_CONFIG.INSTAGRAM_POSTS);
+    if (cached) return cached;
+
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const posts = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    // Cache the result
+    setCachedData("instagram_posts", posts);
+    return posts;
 };
 
 export const deletePost = async (id: string) => {
@@ -42,9 +52,17 @@ export const addSponsor = async (image: string, link: string) => {
 };
 
 export const getSponsors = async () => {
+    const { getCachedData, setCachedData, CACHE_CONFIG } = await import("./cache");
+
+    const cached = getCachedData("sponsors", CACHE_CONFIG.SPONSORS);
+    if (cached) return cached;
+
     const q = query(collection(db, "sponsors"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const sponsors = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    setCachedData("sponsors", sponsors);
+    return sponsors;
 };
 
 export const deleteSponsor = async (id: string) => {
@@ -69,9 +87,17 @@ export const addYoutubeVideo = async (videoUrl: string, thumbnailUrl: string, ti
 };
 
 export const getYoutubeVideos = async () => {
+    const { getCachedData, setCachedData, CACHE_CONFIG } = await import("./cache");
+
+    const cached = getCachedData("youtube_videos", CACHE_CONFIG.YOUTUBE_VIDEOS);
+    if (cached) return cached;
+
     const q = query(collection(db, "youtube_videos"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const videos = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    setCachedData("youtube_videos", videos);
+    return videos;
 };
 
 export const deleteYoutubeVideo = async (id: string) => {
@@ -96,9 +122,17 @@ export const addGear = async (image: string, name: string, category: string, lin
 };
 
 export const getGear = async () => {
+    const { getCachedData, setCachedData, CACHE_CONFIG } = await import("./cache");
+
+    const cached = getCachedData("gear", CACHE_CONFIG.GEAR);
+    if (cached) return cached;
+
     const q = query(collection(db, "gear"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(q);
-    return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const gear = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    setCachedData("gear", gear);
+    return gear;
 };
 
 export const deleteGear = async (id: string) => {
@@ -116,6 +150,14 @@ export interface SocialConfig {
 }
 
 export const getSocialStats = async (): Promise<SocialConfig> => {
+    const { getCachedData, setCachedData, CACHE_CONFIG } = await import("./cache");
+
+    // Check cache first
+    const cached = getCachedData<SocialConfig>("social_stats", CACHE_CONFIG.SOCIAL_STATS);
+    if (cached) {
+        return cached;
+    }
+
     const docRef = doc(db, "configs", "social_stats");
     const { getDoc } = await import("firebase/firestore");
 
@@ -135,7 +177,10 @@ export const getSocialStats = async (): Promise<SocialConfig> => {
         ]) as Awaited<ReturnType<typeof getDoc>>;
 
         if (docSnap.exists()) {
-            return docSnap.data() as SocialConfig;
+            const data = docSnap.data() as SocialConfig;
+            // Cache the result
+            setCachedData("social_stats", data);
+            return data;
         } else {
             throw new Error("Social stats not initialized in Firebase. Please run the initialization script or set values in the dashboard.");
         }

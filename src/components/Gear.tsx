@@ -21,7 +21,9 @@ export default function Gear() {
         const fetch = async () => {
             try {
                 const data = await getGear();
-                setGearItems(data as GearItem[]);
+                if (Array.isArray(data)) {
+                    setGearItems(data as GearItem[]);
+                }
             } catch (error) {
                 console.error("Failed to fetch gear items", error);
             } finally {

@@ -12,15 +12,32 @@ interface Sponsor {
 
 export default function Sponsors() {
     const [sponsors, setSponsors] = useState<Sponsor[]>([]);
+    const [loading, setLoading] = useState(true); // Added loading state
+    const [error, setError] = useState<string | null>(null); // Added error state
 
     useEffect(() => {
-        const fetch = async () => {
-            const data = await getSponsors();
-            setSponsors(data as Sponsor[]);
+        const fetchSponsors = async () => { // Renamed fetch to fetchSponsors for clarity
+            try {
+                const data = await getSponsors();
+                if (Array.isArray(data)) {
+                    setSponsors(data as Sponsor[]);
+                } else {
+                    setError("Fetched data is not an array.");
+                    setSponsors([]); // Ensure sponsors is an empty array on error
+                }
+            } catch (err) {
+                console.error("Failed to fetch sponsors", err);
+                setError("Failed to load sponsors.");
+                setSponsors([]); // Ensure sponsors is an empty array on error
+            } finally {
+                setLoading(false);
+            }
         };
-        fetch();
+        fetchSponsors();
     }, []);
 
+    if (loading) return <div className="text-center py-12">Loading sponsors...</div>; // Display loading state
+    if (error) return <div className="text-center py-12 text-red-500">{error}</div>; // Display error state
     if (sponsors.length === 0) return null;
 
     return (

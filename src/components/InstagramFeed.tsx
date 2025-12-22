@@ -19,7 +19,7 @@ export default function InstagramFeed() {
         const fetch = async () => {
             try {
                 const data = await getPosts();
-                if (data && data.length > 0) {
+                if (Array.isArray(data) && data.length > 0) {
                     setPosts(data as Post[]);
                 }
             } catch (e) {
