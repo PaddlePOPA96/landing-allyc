@@ -133,8 +133,12 @@ export default function Hero() {
 
           <div className="relative w-full h-full translate-y-12 md:translate-y-20 flex items-center justify-center">
             {/* Outer Orbit (Instagram) - Delayed animation */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] border border-dashed border-white/20 rounded-full animate-orbit z-0 opacity-0 animate-fade-in-delayed"
-              style={{ animationDuration: '40s', animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] border border-dashed border-white/20 rounded-full animate-orbit z-0"
+              style={{
+                animationDuration: '40s',
+                animation: 'orbit 40s linear infinite, fade-in-delayed 0.8s ease-out 0.8s forwards',
+                opacity: 0
+              }}>
               {/* Instagram Stat */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-counter-orbit"
                 style={{ animationDuration: '40s' }}>
@@ -148,8 +152,11 @@ export default function Hero() {
             </div>
 
             {/* Inner Orbit (YouTube) - Delayed animation */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] border-2 border-dashed border-white/30 rounded-full animate-orbit z-0 opacity-0 animate-fade-in-delayed"
-              style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] border-2 border-dashed border-white/30 rounded-full animate-orbit z-0"
+              style={{
+                animation: 'orbit 30s linear infinite, fade-in-delayed 0.8s ease-out 1s forwards',
+                opacity: 0
+              }}>
               {/* YouTube Stat */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-counter-orbit">
                 <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
