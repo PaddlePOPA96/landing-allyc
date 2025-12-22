@@ -19,6 +19,7 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://allyc.vercel.app"),
   title: {
     default: "RRQ Allyc - Valorant Streamer & Content Creator",
     template: "%s | RRQ Allyc",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://allyc.live", // Assuming this, or can be placeholder
+    url: "https://allyc.vercel.app", // Assuming this, or can be placeholder
     title: "RRQ Allyc - Valorant Streamer & Content Creator",
     description: "Watch live Valorant streams and check out the latest content from RRQ Allyc.",
     siteName: "RRQ Allyc",

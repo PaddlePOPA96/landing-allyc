@@ -5,7 +5,7 @@ import { getSocialStats, updateSocialStats } from "@/lib/firebaseUtils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Instagram, Youtube, Save } from "lucide-react";
+import { Instagram, Youtube, Save, MessageCircle, Heart } from "lucide-react";
 
 export default function StatsDashboardPage() {
     const [instagramStats, setInstagramStats] = useState("");
@@ -14,7 +14,9 @@ export default function StatsDashboardPage() {
     // Links
     const [instagramLink, setInstagramLink] = useState("");
     const [tiktokLink, setTiktokLink] = useState("");
+    const [youtubeLink, setYoutubeLink] = useState("");
     const [whatsappLink, setWhatsappLink] = useState("");
+    const [saweriaLink, setSaweriaLink] = useState("");
     const [discordLink, setDiscordLink] = useState("");
 
     const [loading, setLoading] = useState(true);
@@ -30,7 +32,9 @@ export default function StatsDashboardPage() {
 
                 setInstagramLink(stats.instagramLink || "");
                 setTiktokLink(stats.tiktokLink || "");
+                setYoutubeLink(stats.youtubeLink || "");
                 setWhatsappLink(stats.whatsappLink || "");
+                setSaweriaLink(stats.saweriaLink || "");
                 setDiscordLink(stats.discordLink || "");
             }
             setLoading(false);
@@ -47,7 +51,9 @@ export default function StatsDashboardPage() {
                 youtubeStats,
                 instagramLink,
                 tiktokLink,
+                youtubeLink,
                 whatsappLink,
+                saweriaLink,
                 discordLink
             });
             alert("Social stats & links updated successfully!");
@@ -133,11 +139,29 @@ export default function StatsDashboardPage() {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium flex items-center gap-2">WhatsApp URL</label>
+                                    <label className="text-sm font-medium flex items-center gap-2"><Youtube size={16} /> YouTube URL</label>
+                                    <Input
+                                        value={youtubeLink}
+                                        onChange={(e) => setYoutubeLink(e.target.value)}
+                                        placeholder="https://youtube.com/..."
+                                        className="bg-white/50"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium flex items-center gap-2"><MessageCircle size={16} /> WhatsApp URL</label>
                                     <Input
                                         value={whatsappLink}
                                         onChange={(e) => setWhatsappLink(e.target.value)}
                                         placeholder="https://wa.me/..."
+                                        className="bg-white/50"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium flex items-center gap-2"><Heart size={16} /> Saweria / Donate URL</label>
+                                    <Input
+                                        value={saweriaLink}
+                                        onChange={(e) => setSaweriaLink(e.target.value)}
+                                        placeholder="https://saweria.co/..."
                                         className="bg-white/50"
                                     />
                                 </div>

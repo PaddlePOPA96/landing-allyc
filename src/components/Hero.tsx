@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { getSocialStats, SocialConfig } from "@/lib/firebaseUtils";
 import Image from "next/image";
-import { Instagram, Youtube, TwitchIcon as Twitch } from "lucide-react";
+import { Instagram, Youtube, MessageCircle, Heart } from "lucide-react";
+import ParticlesBackground from "./ParticlesBackground";
 
 export default function Hero() {
   const [stats, setStats] = useState<SocialConfig>({
@@ -12,6 +13,8 @@ export default function Hero() {
     instagramLink: "https://instagram.com",
     tiktokLink: "https://tiktok.com",
     whatsappLink: "https://wa.me",
+    youtubeLink: "https://youtube.com",
+    saweriaLink: "https://saweria.co",
     discordLink: "https://discord.com",
   });
 
@@ -34,21 +37,28 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen w-full relative flex items-center overflow-hidden bg-[#87CEEB] pt-20 pb-0 md:pt-0">
+      <ParticlesBackground />
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 h-full items-center">
 
         {/* LEFT COLUMN: Content (Quote + Logos) */}
-        <div className="flex flex-col items-start justify-center z-20 space-y-8 md:space-y-12 pt-10 md:pt-0">
+        <div className="flex flex-col items-start justify-center z-20 space-y-6 md:space-y-8 pt-10 md:pt-0">
 
           {/* Typography Quote */}
           <div className="flex flex-col items-start">
             <h2 className="text-white text-2xl md:text-3xl font-[family-name:var(--font-great-vibes)] tracking-wider mb-2 ml-1">
-              Create Something
+              The One & Only
             </h2>
 
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-none tracking-tighter drop-shadow-xl"
+            <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80 leading-none tracking-tighter drop-shadow-xl mb-2"
               style={{ fontFamily: "'Arial Black', sans-serif" }}>
-              WONDER<br />FULL
+              ALLYC
             </h1>
+
+            <h2 className="text-4xl md:text-6xl font-black text-white/50 leading-none tracking-tighter"
+              style={{ fontFamily: "'Arial Black', sans-serif" }}>
+              WONDERFULL
+            </h2>
+
             <p className="text-white/90 text-sm md:text-lg max-w-md mt-6 font-light leading-relaxed">
               Exploring the beauty of the digital world, one stream at a time. Welcome to my universe.
             </p>
@@ -79,7 +89,7 @@ export default function Hero() {
             </a>
 
             <a
-              href={stats.instagramLink}
+              href={stats.youtubeLink}
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 bg-white/90 backdrop-blur-sm rounded-2xl text-red-600 hover:scale-110 hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
@@ -89,13 +99,26 @@ export default function Hero() {
             </a>
 
             <a
-              href="https://twitch.tv"
+              href={stats.saweriaLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 bg-white/90 backdrop-blur-sm rounded-2xl text-purple-600 hover:scale-110 hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-              aria-label="Twitch"
+              className="p-4 bg-white/90 backdrop-blur-sm rounded-2xl text-yellow-600 hover:scale-110 hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+              aria-label="Saweria Donate"
             >
-              <Twitch size={24} className="md:w-6 md:h-6" />
+              <Heart size={24} className="md:w-6 md:h-6" />
+            </a>
+          </div>
+
+          <div className="animate-fade-in-up delay-100">
+            <a
+              href={stats.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-3 text-lg"
+              aria-label="WhatsApp Business"
+            >
+              <MessageCircle size={24} />
+              <span>Contact for Business</span>
             </a>
           </div>
         </div>
@@ -165,26 +188,26 @@ export default function Hero() {
       </div>
 
       {/* Top Logos (RRQ & Valorant) */}
-      <div className="absolute top-4 right-4 md:top-6 md:right-10 z-30 flex items-center justify-center px-4 py-2 gap-4 hidden md:flex">
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 z-40 flex items-center justify-center gap-2 md:gap-4 hidden md:flex">
         {/* Valorant Partner */}
-        <div className="relative w-16 h-16 md:w-32 md:h-32 opacity-100 drop-shadow-lg">
+        <div className="relative w-12 h-12 md:w-20 md:h-20 opacity-100 drop-shadow-lg">
           <Image
             src="/valorant-partner.webp"
             alt="Valorant"
             fill
             className="object-contain"
-            sizes="128px"
+            sizes="(max-width: 768px) 48px, 80px"
           />
         </div>
 
         {/* RRQ Logo */}
-        <div className="relative w-16 h-16 md:w-32 md:h-32 opacity-100 drop-shadow-lg">
+        <div className="relative w-12 h-12 md:w-20 md:h-20 opacity-100 drop-shadow-lg">
           <Image
             src="/logo-rrq.png"
             alt="RRQ"
             fill
             className="object-contain"
-            sizes="128px"
+            sizes="(max-width: 768px) 48px, 80px"
           />
         </div>
       </div>

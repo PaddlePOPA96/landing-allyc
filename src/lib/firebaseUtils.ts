@@ -145,7 +145,9 @@ export interface SocialConfig {
     youtubeStats: string;
     instagramLink: string;
     tiktokLink: string;
+    youtubeLink: string;
     whatsappLink: string;
+    saweriaLink: string;
     discordLink: string;
 }
 
