@@ -132,9 +132,9 @@ export default function Hero() {
           <div className="absolute bottom-100 right-0 md:right-10 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-white/20 rounded-full blur-3xl -z-10"></div>
 
           <div className="relative w-full h-full translate-y-12 md:translate-y-20 flex items-center justify-center">
-            {/* Outer Orbit (Instagram) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] border border-dashed border-white/20 rounded-full animate-orbit z-0"
-              style={{ animationDuration: '40s' }}>
+            {/* Outer Orbit (Instagram) - Delayed animation */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] border border-dashed border-white/20 rounded-full animate-orbit z-0 opacity-0 animate-fade-in-delayed"
+              style={{ animationDuration: '40s', animationDelay: '0.8s', animationFillMode: 'forwards' }}>
               {/* Instagram Stat */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-counter-orbit"
                 style={{ animationDuration: '40s' }}>
@@ -147,8 +147,9 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Inner Orbit (YouTube) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] border-2 border-dashed border-white/30 rounded-full animate-orbit z-0">
+            {/* Inner Orbit (YouTube) - Delayed animation */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] border-2 border-dashed border-white/30 rounded-full animate-orbit z-0 opacity-0 animate-fade-in-delayed"
+              style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
               {/* YouTube Stat */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-counter-orbit">
                 <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
@@ -160,14 +161,17 @@ export default function Hero() {
               </div>
             </div>
 
-            <Image
-              src="/hero-image.png"
-              alt="Jasmine Allyc"
-              fill
-              className="object-contain object-bottom md:object-right-bottom z-10"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            {/* Hero Image with scale-up animation */}
+            <div className="animate-scale-up-from-bottom">
+              <Image
+                src="/hero-image.png"
+                alt="Jasmine Allyc"
+                fill
+                className="object-contain object-bottom md:object-right-bottom z-10"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
 
