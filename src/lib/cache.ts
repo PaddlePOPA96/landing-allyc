@@ -38,3 +38,9 @@ export function clearCache(key?: string): void {
         cache.clear();
     }
 }
+
+// Helper to clear all caches at once
+export function clearAllCaches(): void {
+    cache.clear();
+    console.log("✅ All caches cleared!");
+}

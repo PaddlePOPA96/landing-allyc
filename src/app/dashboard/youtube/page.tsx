@@ -41,6 +41,11 @@ export default function YoutubeDashboardPage() {
         if (!newUrl || !newTitle) return;
         setLoading(true);
         await addYoutubeVideo(newUrl, newThumb || "https://placehold.co/600x400?text=No+Thumbnail", newTitle, newViews || "0 views");
+
+        // Clear cache so new video appears immediately
+        const { clearCache } = await import("@/lib/cache");
+        clearCache("youtube_videos");
+
         setNewUrl("");
         setNewTitle("");
         setNewThumb("");
@@ -52,6 +57,11 @@ export default function YoutubeDashboardPage() {
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this video?")) return;
         await deleteYoutubeVideo(id);
+
+        // Clear cache so deletion reflects immediately
+        const { clearCache } = await import("@/lib/cache");
+        clearCache("youtube_videos");
+
         fetchVideos();
     };
 

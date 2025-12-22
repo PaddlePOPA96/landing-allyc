@@ -36,6 +36,11 @@ export default function PostsPage() {
         if (!newImage || !newLink) return;
         setLoading(true);
         await addPost(newImage, newLink);
+
+        // Clear cache so new post appears immediately
+        const { clearCache } = await import("@/lib/cache");
+        clearCache("instagram_posts");
+
         setNewImage("");
         setNewLink("");
         setLoading(false);
@@ -45,6 +50,11 @@ export default function PostsPage() {
     const handleDelete = async (id: string) => {
         if (!confirm("Are you sure you want to delete this post?")) return;
         await deletePost(id);
+
+        // Clear cache so deletion reflects immediately
+        const { clearCache } = await import("@/lib/cache");
+        clearCache("instagram_posts");
+
         fetchPosts();
     };
 
