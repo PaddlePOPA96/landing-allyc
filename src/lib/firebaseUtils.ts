@@ -162,12 +162,12 @@ export const getSocialStats = async (): Promise<SocialConfig> => {
     const { getDoc } = await import("firebase/firestore");
 
     try {
-        // Create a timeout promise that rejects after 5 seconds to prevent hanging
+        // Create a timeout promise that rejects after 10 seconds
         const timeout = new Promise<never>((_, reject) => {
             const id = setTimeout(() => {
                 clearTimeout(id);
                 reject(new Error("Firebase fetch timeout"));
-            }, 5000);
+            }, 10000); // Increased to 10 seconds
         });
 
         // Race the fetch against the timeout

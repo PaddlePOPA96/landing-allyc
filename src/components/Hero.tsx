@@ -162,16 +162,14 @@ export default function Hero() {
             </div>
 
             {/* Hero Image with scale-up animation */}
-            <div className="animate-scale-up-from-bottom">
-              <Image
-                src="/hero-image.png"
-                alt="Jasmine Allyc"
-                fill
-                className="object-contain object-bottom md:object-right-bottom z-10"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+            <Image
+              src="/hero-image.png"
+              alt="Jasmine Allyc"
+              fill
+              className="object-contain object-bottom md:object-right-bottom z-10 animate-scale-up-from-bottom"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </div>
 
