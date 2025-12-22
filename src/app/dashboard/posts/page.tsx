@@ -20,7 +20,6 @@ export default function PostsPage() {
     const [newImage, setNewImage] = useState("");
     const [newLink, setNewLink] = useState("");
     const [loading, setLoading] = useState(false);
-    const [syncing, setSyncing] = useState(false);
 
     useEffect(() => {
         fetchPosts();
@@ -30,38 +29,6 @@ export default function PostsPage() {
         const data = await getPosts();
         // @ts-ignore
         setPosts(data as Post[]);
-    };
-
-    const handleSync = async () => {
-        try {
-            setSyncing(true);
-            const res = await fetch('/api/crawl');
-            const data = await res.json();
-
-            if (data.success && data.posts) {
-                let addedCount = 0;
-                // Add posts that don't exist yet (by permalink check ideally, but here just adding all crawled that are likely new)
-                // Ideally we check if permalink exists in current posts.
-                const currentPermalinks = new Set(posts.map(p => p.permalink));
-
-                for (const post of data.posts) {
-                    if (!currentPermalinks.has(post.permalink)) {
-                        // Simply save the Instagram URL and Permalink
-                        await addPost(post.media_url, post.permalink);
-                        addedCount++;
-                    }
-                }
-                alert(`Synced! Added ${addedCount} new posts.`);
-                fetchPosts();
-            } else {
-                alert("Failed to sync. Instagram might be blocking access.");
-            }
-        } catch (e) {
-            console.error(e);
-            alert("Error syncing.");
-        } finally {
-            setSyncing(false);
-        }
     };
 
     const handleAdd = async (e: React.FormEvent) => {
@@ -85,14 +52,6 @@ export default function PostsPage() {
         <div className="space-y-8 p-8">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold tracking-tight">Instagram Posts</h1>
-                <Button
-                    onClick={handleSync}
-                    disabled={syncing}
-                    className="gap-2"
-                >
-                    <RefreshCw size={16} className={syncing ? "animate-spin" : ""} />
-                    {syncing ? "Syncing..." : "Sync from Instagram"}
-                </Button>
             </div>
 
             {/* Add Form */}
