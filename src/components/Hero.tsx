@@ -111,12 +111,12 @@ export default function Hero() {
               {/* Static Ring Border */}
               <div className="absolute w-full h-full border border-dashed border-white/20 rounded-full"></div>
 
-              {/* Rotating Container for Badge */}
-              <div className="absolute w-full h-full" style={{ animation: 'hero-orbit 40s linear infinite' }}>
+              {/* Rotating Container for Instagram Badge */}
+              <div className="absolute w-full h-full z-0" style={{ animation: 'hero-orbit 35s linear infinite', transformOrigin: 'center' }}>
                 {/* Badge positioned at top center of rotation */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  {/* Counter-rotate badge to keep text upright */}
-                  <div style={{ animation: 'hero-counter-orbit 40s linear infinite' }}>
+                  {/* Counter-rotate badge to keep text upright - Duration MUST match the orbit */}
+                  <div style={{ animation: 'hero-counter-orbit 35s linear infinite' }}>
                     <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/40 backdrop-blur-md">
                       <div className="bg-white rounded-full p-1">
                         <Instagram size={16} className="text-pink-600" />
@@ -133,12 +133,12 @@ export default function Hero() {
               {/* Static Ring Border */}
               <div className="absolute w-full h-full border-2 border-dashed border-white/30 rounded-full"></div>
 
-              {/* Rotating Container for Badge */}
-              <div className="absolute w-full h-full" style={{ animation: 'hero-orbit 30s linear infinite' }}>
+              {/* Rotating Container for YouTube Badge */}
+              <div className="absolute w-full h-full z-0" style={{ animation: 'hero-orbit 25s linear infinite', transformOrigin: 'center' }}>
                 {/* Badge positioned at top center of rotation */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  {/* Counter-rotate badge to keep text upright */}
-                  <div style={{ animation: 'hero-counter-orbit 30s linear infinite' }}>
+                  {/* Counter-rotate badge to keep text upright - Duration MUST match the orbit */}
+                  <div style={{ animation: 'hero-counter-orbit 25s linear infinite' }}>
                     <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
                       <div className="bg-white rounded-full p-1">
                         <Youtube size={16} className="text-red-600" />
