@@ -106,40 +106,44 @@ export default function Hero() {
           <div className="absolute bottom-100 right-0 md:right-10 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-white/20 rounded-full blur-3xl -z-10"></div>
 
           <div className="relative w-full h-full translate-y-12 md:translate-y-20 flex items-center justify-center">
-            {/* Outer Orbit (Instagram) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] border border-dashed border-white/20 rounded-full z-0"
-              style={{
-                animation: 'orbit 40s linear infinite'
-              }}>
-              {/* Instagram Stat - Orbiting */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                style={{
-                  animation: 'counter-orbit 40s linear infinite'
-                }}>
-                <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/40 backdrop-blur-md">
-                  <div className="bg-white rounded-full p-1">
-                    <Instagram size={16} className="text-pink-600" />
+            {/* Outer Orbit System (Instagram) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] z-0">
+              {/* Rotating Ring */}
+              <div className="w-full h-full border border-dashed border-white/20 rounded-full"
+                style={{ animation: 'orbit 40s linear infinite' }}>
+
+                {/* Badge Container - Positioned on ring */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                  {/* Counter Rotating Badge - Keeps upright */}
+                  <div style={{ animation: 'counter-orbit 40s linear infinite' }}>
+                    <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/40 backdrop-blur-md">
+                      <div className="bg-white rounded-full p-1">
+                        <Instagram size={16} className="text-pink-600" />
+                      </div>
+                      <span>{stats.instagramStats} Followers</span>
+                    </div>
                   </div>
-                  <span>{stats.instagramStats} Followers</span>
                 </div>
               </div>
             </div>
 
-            {/* Inner Orbit (YouTube) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] border-2 border-dashed border-white/30 rounded-full z-0"
-              style={{
-                animation: 'orbit 30s linear infinite'
-              }}>
-              {/* YouTube Stat - Orbiting */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                style={{
-                  animation: 'counter-orbit 30s linear infinite'
-                }}>
-                <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
-                  <div className="bg-white rounded-full p-1">
-                    <Youtube size={16} className="text-red-600" />
+            {/* Inner Orbit System (YouTube) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] z-0">
+              {/* Rotating Ring */}
+              <div className="w-full h-full border-2 border-dashed border-white/30 rounded-full"
+                style={{ animation: 'orbit 30s linear infinite' }}>
+
+                {/* Badge Container */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                  {/* Counter Rotating Badge */}
+                  <div style={{ animation: 'counter-orbit 30s linear infinite' }}>
+                    <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
+                      <div className="bg-white rounded-full p-1">
+                        <Youtube size={16} className="text-red-600" />
+                      </div>
+                      <span>{stats.youtubeStats} Sub</span>
+                    </div>
                   </div>
-                  <span>{stats.youtubeStats} Sub</span>
                 </div>
               </div>
             </div>
