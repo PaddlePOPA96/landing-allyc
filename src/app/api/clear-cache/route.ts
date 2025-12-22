@@ -8,7 +8,7 @@ export async function POST() {
             success: true,
             message: "Cache cleared successfully"
         });
-    } catch (error) {
+    } catch {
         return NextResponse.json({
             success: false,
             error: "Failed to clear cache"

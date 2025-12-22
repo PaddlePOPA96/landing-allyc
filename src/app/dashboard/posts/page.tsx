@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { addPost, getPosts, deletePost } from "@/lib/firebaseUtils";
-import { Trash2, RefreshCw } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 
 interface Post {
@@ -27,7 +27,6 @@ export default function PostsPage() {
 
     const fetchPosts = async () => {
         const data = await getPosts();
-        // @ts-ignore
         setPosts(data as Post[]);
     };
 
