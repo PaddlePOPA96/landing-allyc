@@ -5,14 +5,14 @@
  * Run this once to populate your Firebase database with initial values.
  * 
  * Usage:
- * 1. Make sure you're authenticated in your Firebase project
- * 2. Run: npx ts-node scripts/init-firebase-data.ts
+ * node scripts/init-firebase-data.js
  * 
  * Or use the dashboard to manually enter these values.
  */
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+const { initializeApp } = require("firebase/app");
+const { getFirestore, doc, setDoc } = require("firebase/firestore");
+require('dotenv').config({ path: '.env.local' });
 
 // Firebase configuration - using environment variables
 const firebaseConfig = {
