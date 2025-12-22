@@ -9,7 +9,7 @@ export const CACHE_CONFIG = {
 };
 
 // Simple in-memory cache
-const cache = new Map<string, { data: any; timestamp: number }>();
+const cache = new Map<string, { data: unknown; timestamp: number }>();
 
 export function getCachedData<T>(key: string, maxAge: number): T | null {
     const cached = cache.get(key);
@@ -24,7 +24,7 @@ export function getCachedData<T>(key: string, maxAge: number): T | null {
     return cached.data as T;
 }
 
-export function setCachedData(key: string, data: any): void {
+export function setCachedData(key: string, data: unknown): void {
     cache.set(key, {
         data,
         timestamp: Date.now(),

@@ -33,7 +33,6 @@ export default function YoutubeDashboardPage() {
 
     const fetchVideos = async () => {
         const data = await getYoutubeVideos();
-        // @ts-ignore
         setVideos(data as YoutubeVideo[]);
     };
 

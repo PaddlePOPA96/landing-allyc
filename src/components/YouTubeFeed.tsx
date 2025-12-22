@@ -22,7 +22,6 @@ export default function YouTubeFeed() {
             try {
                 const data = await getYoutubeVideos();
                 if (Array.isArray(data) && data.length > 0) {
-                    // @ts-ignore
                     setVideos(data);
                 }
             } catch (e) {
