@@ -3,7 +3,7 @@ export const CACHE_CONFIG = {
     // Cache duration in milliseconds
     SOCIAL_STATS: 5 * 60 * 1000, // 5 minutes
     INSTAGRAM_POSTS: 10 * 60 * 1000, // 10 minutes
-    YOUTUBE_VIDEOS: 10 * 60 * 1000, // 10 minutes
+    YOUTUBE_VIDEOS: 24 * 60 * 60 * 1000, // 24 hours (1 day)
     SPONSORS: 30 * 60 * 1000, // 30 minutes
     GEAR: 30 * 60 * 1000, // 30 minutes
 };
