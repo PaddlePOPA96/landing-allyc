@@ -73,7 +73,29 @@
     }
   }
 
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes counter-orbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
   --animate-blob: blob 7s infinite;
+  --animate-orbit: orbit 30s linear infinite;
+  --animate-counter-orbit: counter-orbit 30s linear infinite;
 }
 
 :root {

@@ -1,0 +1,77 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to validate social config data
+    function isValidSocialConfig() {
+      return request.resource.data.keys().hasAll([
+        'instagramStats', 
+        'youtubeStats', 
+        'instagramLink', 
+        'tiktokLink', 
+        'whatsappLink', 
+        'discordLink'
+      ]) &&
+      request.resource.data.instagramStats is string &&
+      request.resource.data.youtubeStats is string &&
+      request.resource.data.instagramLink is string &&
+      request.resource.data.tiktokLink is string &&
+      request.resource.data.whatsappLink is string &&
+      request.resource.data.discordLink is string;
+    }
+    
+    // Instagram Posts
+    match /posts/{postId} {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated(); // Only authenticated users can write
+    }
+    
+    // Sponsors/Partners
+    match /sponsors/{sponsorId} {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated(); // Only authenticated users can write
+    }
+    
+    // YouTube Videos
+    match /youtube_videos/{videoId} {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated(); // Only authenticated users can write
+    }
+    
+    // Gear/Setup
+    match /gear/{gearId} {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated(); // Only authenticated users can write
+    }
+    
+    // Social Stats Configuration
+    match /configs/social_stats {
+      allow read: if true; // Public read for landing page
+      allow create, update: if isAuthenticated() && isValidSocialConfig();
+      allow delete: if false; // Never allow deletion
+    }
+    
+    // Valorant Settings
+    match /configs/valorant_settings {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated();
+    }
+    
+    // Stream URL Configuration
+    match /configs/stream_url {
+      allow read: if true; // Public read for landing page
+      allow write: if isAuthenticated();
+    }
+    
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

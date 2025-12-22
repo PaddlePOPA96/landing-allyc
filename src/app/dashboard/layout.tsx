@@ -4,7 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { LayoutDashboard, Image as ImageIcon, Users, LogOut } from "lucide-react";
+import { LayoutDashboard, Image as ImageIcon, Users, LogOut, Activity } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
@@ -29,8 +29,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     const navItems = [
         { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+        { name: "Social Stats", href: "/dashboard/stats", icon: Activity },
         { name: "Instagram Posts", href: "/dashboard/posts", icon: ImageIcon },
-        { name: "YouTube Videos", href: "/dashboard/youtube", icon: Users }, // Reusing Users icon or import Youtube if available, but Users is safe
+        { name: "YouTube Videos", href: "/dashboard/youtube", icon: Users },
         { name: "Sponsors", href: "/dashboard/sponsors", icon: Users },
     ];
 

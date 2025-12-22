@@ -104,3 +104,52 @@ export const getGear = async () => {
 export const deleteGear = async (id: string) => {
     await deleteDoc(doc(db, "gear", id));
 };
+
+// Social Stats
+export interface SocialConfig {
+    instagramStats: string;
+    youtubeStats: string;
+    instagramLink: string;
+    tiktokLink: string;
+    whatsappLink: string;
+    discordLink: string;
+}
+
+export const getSocialStats = async (): Promise<SocialConfig> => {
+    const docRef = doc(db, "configs", "social_stats");
+    const { getDoc } = await import("firebase/firestore");
+
+    try {
+        // Create a timeout promise that rejects after 5 seconds to prevent hanging
+        const timeout = new Promise<never>((_, reject) => {
+            const id = setTimeout(() => {
+                clearTimeout(id);
+                reject(new Error("Firebase fetch timeout"));
+            }, 5000);
+        });
+
+        // Race the fetch against the timeout
+        const docSnap = await Promise.race([
+            getDoc(docRef),
+            timeout
+        ]) as Awaited<ReturnType<typeof getDoc>>;
+
+        if (docSnap.exists()) {
+            return docSnap.data() as SocialConfig;
+        } else {
+            throw new Error("Social stats not initialized in Firebase. Please run the initialization script or set values in the dashboard.");
+        }
+    } catch (e) {
+        console.error("Error fetching social stats from Firebase:", e);
+        throw e;
+    }
+};
+
+export const updateSocialStats = async (data: SocialConfig) => {
+    const docRef = doc(db, "configs", "social_stats");
+    const { setDoc } = await import("firebase/firestore");
+    await setDoc(docRef, {
+        ...data,
+        updatedAt: new Date(),
+    }, { merge: true });
+};
