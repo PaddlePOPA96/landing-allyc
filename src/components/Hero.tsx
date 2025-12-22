@@ -163,6 +163,31 @@ export default function Hero() {
         </div>
 
       </div>
+
+      {/* Top Logos (RRQ & Valorant) */}
+      <div className="absolute top-4 right-4 md:top-6 md:right-10 z-30 flex items-center justify-center px-4 py-2 gap-4 hidden md:flex">
+        {/* Valorant Partner */}
+        <div className="relative w-16 h-16 md:w-32 md:h-32 opacity-100 drop-shadow-lg">
+          <Image
+            src="/valorant-partner.webp"
+            alt="Valorant"
+            fill
+            className="object-contain"
+            sizes="128px"
+          />
+        </div>
+
+        {/* RRQ Logo */}
+        <div className="relative w-16 h-16 md:w-32 md:h-32 opacity-100 drop-shadow-lg">
+          <Image
+            src="/logo-rrq.png"
+            alt="RRQ"
+            fill
+            className="object-contain"
+            sizes="128px"
+          />
+        </div>
+      </div>
     </section>
   );
 }
