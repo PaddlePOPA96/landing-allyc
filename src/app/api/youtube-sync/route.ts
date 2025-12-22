@@ -1,37 +1,25 @@
 import { NextResponse } from 'next/server';
 
+// Channel ID - hardcoded untuk channel Allyc
+const CHANNEL_ID = "UCjqLfPpZetlzUye-ia1cixQ";
+
 export async function GET() {
     try {
-        const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-        const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
+        // Fetch RSS feed dari YouTube (gratis, no API key needed!)
+        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
-        if (!YOUTUBE_API_KEY || !CHANNEL_ID) {
-            return NextResponse.json({
-                success: false,
-                error: "YouTube API key or Channel ID not configured"
-            }, { status: 500 });
-        }
-
-        // Fetch latest videos from YouTube
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=10&type=video`,
-            { next: { revalidate: 0 } } // Don't cache
-        );
+        const response = await fetch(rssUrl, {
+            next: { revalidate: 0 } // Don't cache
+        });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch from YouTube API');
+            throw new Error('Failed to fetch YouTube RSS feed');
         }
 
-        const data = await response.json();
+        const xmlText = await response.text();
 
-        // Transform to our format
-        const videos = data.items.map((item: any) => ({
-            videoId: item.id.videoId,
-            videoUrl: `https://www.youtube.com/watch?v=${item.id.videoId}`,
-            thumbnailUrl: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.default?.url,
-            title: item.snippet.title,
-            publishedAt: item.snippet.publishedAt,
-        }));
+        // Parse XML sederhana untuk extract video data
+        const videos = parseYouTubeRSS(xmlText);
 
         return NextResponse.json({
             success: true,
@@ -39,10 +27,42 @@ export async function GET() {
         });
 
     } catch (error) {
-        console.error('YouTube API error:', error);
+        console.error('YouTube RSS error:', error);
         return NextResponse.json({
             success: false,
             error: error instanceof Error ? error.message : "Failed to fetch videos"
         }, { status: 500 });
     }
+}
+
+function parseYouTubeRSS(xml: string) {
+    const videos = [];
+
+    // Simple regex parsing untuk YouTube RSS
+    const entryRegex = /<entry>(.*?)<\/entry>/gs;
+    const entries = xml.match(entryRegex) || [];
+
+    for (const entry of entries.slice(0, 10)) { // Ambil 10 terbaru
+        const videoId = entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1];
+        const title = entry.match(/<title>(.*?)<\/title>/)?.[1];
+
+        if (videoId && title) {
+            // Decode HTML entities
+            const decodedTitle = title
+                .replace(/&amp;/g, '&')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'");
+
+            videos.push({
+                videoId,
+                videoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+                thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+                title: decodedTitle,
+            });
+        }
+    }
+
+    return videos;
 }
