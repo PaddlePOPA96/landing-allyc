@@ -9,10 +9,10 @@ export default function Hero() {
   const [stats, setStats] = useState<SocialConfig>({
     instagramStats: "0",
     youtubeStats: "0",
-    tiktokStats: "0",
     instagramLink: "https://instagram.com",
-    youtubeLink: "https://youtube.com",
     tiktokLink: "https://tiktok.com",
+    whatsappLink: "https://wa.me",
+    discordLink: "https://discord.com",
   });
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function Hero() {
             </a>
 
             <a
-              href={stats.youtubeLink}
+              href={stats.instagramLink}
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 bg-white/90 backdrop-blur-sm rounded-2xl text-red-600 hover:scale-110 hover:bg-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
