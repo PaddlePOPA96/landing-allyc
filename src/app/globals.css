@@ -73,7 +73,7 @@
     }
   }
 
-  @keyframes orbit {
+  @keyframes hero-orbit {
     0% {
       transform: rotate(0deg);
     }
@@ -83,7 +83,7 @@
     }
   }
 
-  @keyframes counter-orbit {
+  @keyframes hero-counter-orbit {
     0% {
       transform: rotate(0deg);
     }
