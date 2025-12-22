@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync-youtube": "node scripts/sync-youtube.js",
+    "sync-instagram": "node scripts/sync-instagram.js"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
