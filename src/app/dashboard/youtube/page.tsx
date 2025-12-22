@@ -25,6 +25,7 @@ export default function YoutubeDashboardPage() {
     const [newViews, setNewViews] = useState("");
 
     const [loading, setLoading] = useState(false);
+    const [syncing, setSyncing] = useState(false);
 
     useEffect(() => {
         fetchVideos();
@@ -65,10 +66,57 @@ export default function YoutubeDashboardPage() {
         fetchVideos();
     };
 
+    const handleSync = async () => {
+        try {
+            setSyncing(true);
+            const res = await fetch('/api/youtube-sync');
+            const data = await res.json();
+
+            if (data.success && data.videos) {
+                let addedCount = 0;
+                const currentUrls = new Set(videos.map(v => v.videoUrl));
+
+                for (const video of data.videos) {
+                    if (!currentUrls.has(video.videoUrl)) {
+                        await addYoutubeVideo(
+                            video.videoUrl,
+                            video.thumbnailUrl,
+                            video.title,
+                            "Recent"
+                        );
+                        addedCount++;
+                    }
+                }
+
+                // Clear cache after sync
+                const { clearCache } = await import("@/lib/cache");
+                clearCache("youtube_videos");
+
+                alert(`✅ Synced! Added ${addedCount} new video(s).`);
+                fetchVideos();
+            } else {
+                alert(`❌ ${data.error || 'Failed to sync. Check API configuration.'}`);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("❌ Error syncing from YouTube.");
+        } finally {
+            setSyncing(false);
+        }
+    };
+
     return (
         <div className="space-y-8 p-8">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold tracking-tight">YouTube Videos</h1>
+                <Button
+                    onClick={handleSync}
+                    disabled={syncing}
+                    className="gap-2 bg-red-600 hover:bg-red-700 text-white"
+                >
+                    <RefreshCw size={16} className={syncing ? "animate-spin" : ""} />
+                    {syncing ? "Syncing..." : "Sync from YouTube"}
+                </Button>
             </div>
 
             {/* Add Form */}
