@@ -39,7 +39,7 @@ function parseYouTubeRSS(xml: string) {
     const videos = [];
 
     // Simple regex parsing untuk YouTube RSS
-    const entryRegex = /<entry>(.*?)<\/entry>/gs;
+    const entryRegex = /<entry>[\s\S]*?<\/entry>/g;
     const entries = xml.match(entryRegex) || [];
 
     for (const entry of entries.slice(0, 10)) { // Ambil 10 terbaru
