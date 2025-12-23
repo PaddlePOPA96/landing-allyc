@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Youtube, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getYoutubeVideos } from "@/lib/firebaseUtils";
 
