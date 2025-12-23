@@ -75,7 +75,12 @@ export default function YoutubeDashboardPage() {
                 let addedCount = 0;
                 const currentUrls = new Set(videos.map(v => v.videoUrl));
 
-                for (const video of data.videos) {
+                // Balik urutan agar video TERLAMA di batch ini masuk duluan ke DB (timestamp lebih lampau)
+                // dan video TERBARU masuk terakhir (timestamp paling baru).
+                // Dengan orderBy('createdAt', 'desc'), video TERBARU akan muncul paling atas.
+                const videosToSync = [...data.videos].reverse();
+
+                for (const video of videosToSync) {
                     if (!currentUrls.has(video.videoUrl)) {
                         await addYoutubeVideo(
                             video.videoUrl,
@@ -159,6 +164,7 @@ export default function YoutubeDashboardPage() {
                                 src={video.thumbnailUrl || "https://placehold.co/600x400.png?text=No+Thumbnail"}
                                 alt={video.title}
                                 fill
+                                unoptimized
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-cover"
                             />

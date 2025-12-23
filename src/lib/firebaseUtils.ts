@@ -168,8 +168,9 @@ export const getSocialStats = async (): Promise<SocialConfig> => {
         const timeout = new Promise<never>((_, reject) => {
             const id = setTimeout(() => {
                 clearTimeout(id);
-                reject(new Error("Firebase fetch timeout"));
-            }, 10000); // Increased to 10 seconds
+                // More extensive error message
+                reject(new Error("Firebase fetch timeout. Check your internet connection or firewall/adblocker settings."));
+            }, 8000); // 8 seconds timeout
         });
 
         // Race the fetch against the timeout
