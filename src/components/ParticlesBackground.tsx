@@ -10,8 +10,8 @@ export default function ParticlesBackground() {
         await loadSlim(engine);
     }, []);
 
-    const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        // console.log(container);
+    const particlesLoaded = useCallback(async () => {
+        // console.log("Particles loaded");
     }, []);
 
     return (
