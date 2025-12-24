@@ -130,7 +130,7 @@ export default function Hero() {
 
           <div className="relative w-full h-full translate-y-12 md:translate-y-20 flex items-center justify-center">
             {/* Outer Orbit System (Instagram) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[380px] h-[380px] md:w-[720px] md:h-[720px] z-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[720px] md:h-[720px] z-0">
               {/* Static Ring Border */}
               <div className="absolute w-full h-full border border-dashed border-white/20 rounded-full"></div>
 
@@ -139,10 +139,10 @@ export default function Hero() {
                 {/* Badge positioned at top center of rotation */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   {/* Counter-rotate badge to keep text upright - Duration MUST match the orbit */}
-                  <div style={{ animation: 'hero-counter-orbit 35s linear infinite' }}>
-                    <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/40 backdrop-blur-md">
-                      <div className="bg-white rounded-full p-1">
-                        <Instagram size={16} className="text-pink-600" />
+                  <div style={{ animation: 'hero-counter-orbit 35s linear infinite', transformOrigin: 'center' }}>
+                    <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white px-2 py-1 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl shadow-2xl flex items-center gap-1.5 md:gap-2 font-bold text-[10px] md:text-sm border md:border-2 border-white/40 backdrop-blur-md whitespace-nowrap">
+                      <div className="bg-white rounded-full p-0.5 md:p-1">
+                        <Instagram size={12} className="md:w-4 md:h-4 text-pink-600" />
                       </div>
                       <span>{stats.instagramStats} Followers</span>
                     </div>
@@ -152,7 +152,7 @@ export default function Hero() {
             </div>
 
             {/* Inner Orbit System (YouTube) */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[260px] h-[260px] md:w-[480px] md:h-[480px] z-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[480px] md:h-[480px] z-0">
               {/* Static Ring Border */}
               <div className="absolute w-full h-full border-2 border-dashed border-white/30 rounded-full"></div>
 
@@ -161,10 +161,10 @@ export default function Hero() {
                 {/* Badge positioned at top center of rotation */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   {/* Counter-rotate badge to keep text upright - Duration MUST match the orbit */}
-                  <div style={{ animation: 'hero-counter-orbit 25s linear infinite' }}>
-                    <div className="bg-red-600 text-white px-3 py-1.5 md:px-5 md:py-2.5 rounded-2xl shadow-2xl flex items-center gap-2 font-bold text-xs md:text-sm border-2 border-white/50 backdrop-blur-sm">
-                      <div className="bg-white rounded-full p-1">
-                        <Youtube size={16} className="text-red-600" />
+                  <div style={{ animation: 'hero-counter-orbit 25s linear infinite', transformOrigin: 'center' }}>
+                    <div className="bg-red-600 text-white px-2 py-1 md:px-5 md:py-2.5 rounded-xl md:rounded-2xl shadow-2xl flex items-center gap-1.5 md:gap-2 font-bold text-[10px] md:text-sm border md:border-2 border-white/50 backdrop-blur-sm whitespace-nowrap">
+                      <div className="bg-white rounded-full p-0.5 md:p-1">
+                        <Youtube size={12} className="md:w-4 md:h-4 text-red-600" />
                       </div>
                       <span>{stats.youtubeStats} Sub</span>
                     </div>
@@ -188,7 +188,7 @@ export default function Hero() {
       </div>
 
       {/* Top Logos (RRQ & Valorant) */}
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 z-40 flex items-center justify-center gap-2 md:gap-4 hidden md:flex">
+      <div className="absolute top-2 right-2 md:top-4 md:right-4 z-40 flex items-center justify-center gap-2 md:gap-4 md:flex">
         {/* Valorant Partner */}
         <div className="relative w-12 h-12 md:w-20 md:h-20 opacity-100 drop-shadow-lg">
           <Image
