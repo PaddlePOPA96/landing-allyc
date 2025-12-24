@@ -175,7 +175,7 @@ export default function Hero() {
 
             {/* Hero Image with scale-up animation */}
             <Image
-              src="/hero-image.png"
+              src="/hero-image.webp"
               alt="Jasmine Allyc"
               fill
               className="object-contain object-bottom md:object-right-bottom z-10 animate-scale-up-from-bottom"
