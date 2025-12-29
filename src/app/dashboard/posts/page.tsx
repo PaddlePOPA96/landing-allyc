@@ -63,7 +63,7 @@ export default function PostsPage() {
                 <h1 className="text-3xl font-bold tracking-tight">Instagram Posts</h1>
             </div>
 
-            {/* Add Form */}
+            {/* Smart Add Form */}
             <Card>
                 <CardHeader>
                     <CardTitle>Add New Post</CardTitle>
@@ -71,19 +71,34 @@ export default function PostsPage() {
                 <CardContent>
                     <form onSubmit={handleAdd} className="flex gap-4 items-end">
                         <div className="flex-1 space-y-2">
-                            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Image URL</label>
+                            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                Post Link (e.g. from Browser)
+                            </label>
                             <Input
-                                value={newImage}
-                                onChange={(e) => setNewImage(e.target.value)}
-                                placeholder="https://..."
+                                value={newLink}
+                                onChange={(e) => {
+                                    const link = e.target.value;
+                                    setNewLink(link);
+
+                                    // Smart Auto-Populate Image
+                                    if (link.includes("instagram.com/p/")) {
+                                        // Ensure it ends with slash for clean concat, though not strictly needed for param
+                                        const cleanLink = link.split('?')[0];
+                                        const mediaUrl = `${cleanLink.replace(/\/+$/, '')}/media/?size=l`;
+                                        setNewImage(mediaUrl);
+                                    }
+                                }}
+                                placeholder="https://www.instagram.com/p/..."
                             />
                         </div>
                         <div className="flex-1 space-y-2">
-                            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Information / Link</label>
+                            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                Image URL (Auto-generated)
+                            </label>
                             <Input
-                                value={newLink}
-                                onChange={(e) => setNewLink(e.target.value)}
-                                placeholder="https://instagram.com/..."
+                                value={newImage}
+                                onChange={(e) => setNewImage(e.target.value)}
+                                placeholder="Auto-generated from link..."
                             />
                         </div>
                         <Button type="submit" disabled={loading}>
