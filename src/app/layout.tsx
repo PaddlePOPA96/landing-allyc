@@ -51,15 +51,7 @@ export const metadata: Metadata = {
     images: ["/logo-rrq.png"],
     creator: "@allyccc", // Assuming twitter handle, or just leave generic if unknown
   },
-  icons: {
-    icon: [
-      { url: "/logo-rrq.png" },
-      { url: "/logo-rrq.png", sizes: "32x32", type: "image/png" },
-      { url: "/logo-rrq.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/logo-rrq.png",
-    shortcut: "/logo-rrq.png",
-  },
+
   robots: {
     index: true,
     follow: true,
