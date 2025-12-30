@@ -22,16 +22,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://allyc.vercel.app"),
   title: {
     default: "RRQ Allyc - Valorant Streamer & Content Creator",
-    template: "%s | RRQ Allyc",
+    template: "%s | RRQ Allyc - Valorant Streamer",
   },
   description: "Official website of RRQ Allyc (Jasmine Allyc). Watch live Valorant streams, check out the latest content, and follow the journey of a professional streamer and content creator.",
-  keywords: ["RRQ Allyc", "Allyc Stream", "Valorant Streamer", "Jasmine Allyc", "RRQ Streamer", "Female Valorant Streamer", "Indonesia Streamer"],
+  keywords: ["RRQ Allyc", "RRQ ALLYC", "Allyc Stream", "Valorant Streamer", "Jasmine Allyc", "RRQ Streamer", "Female Valorant Streamer", "Indonesia Streamer"],
   authors: [{ name: "Jasmine Allyc" }],
   creator: "Jasmine Allyc",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://allyc.vercel.app", // Assuming this, or can be placeholder
+    url: "https://allyc.vercel.app",
     title: "RRQ Allyc - Valorant Streamer & Content Creator",
     description: "Watch live Valorant streams and check out the latest content from RRQ Allyc.",
     siteName: "RRQ Allyc",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "RRQ Allyc - Valorant Streamer",
     description: "Official website of RRQ Allyc. Live streams, clips, and more.",
     images: ["/logo-rrq.png"],
-    creator: "@allyccc", // Assuming twitter handle, or just leave generic if unknown
+    creator: "@allyccc",
   },
 
   robots: {
