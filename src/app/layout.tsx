@@ -64,6 +64,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "nAvlIZdch2e5w1NjZINZlfzsvV5mODPn4fpRzsaNk84",
+  },
 };
 
 import AuthProviderWrapper from "@/components/AuthProviderWrapper";
