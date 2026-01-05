@@ -20,6 +20,9 @@ const greatVibes = Great_Vibes({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allyc.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "RRQ Allyc - Valorant Streamer & Content Creator",
     template: "%s | RRQ Allyc - Valorant Streamer",
@@ -62,6 +65,7 @@ export const metadata: Metadata = {
 };
 
 import AuthProviderWrapper from "@/components/AuthProviderWrapper";
+import JsonLd from "@/components/JsonLd";
 
 export default function RootLayout({
   children,
@@ -76,6 +80,7 @@ export default function RootLayout({
         <AuthProviderWrapper>
           {children}
         </AuthProviderWrapper>
+        <JsonLd />
       </body>
     </html>
   );
