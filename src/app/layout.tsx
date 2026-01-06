@@ -62,6 +62,11 @@ export const metadata: Metadata = {
   verification: {
     google: "lmYpUOw55xokwQ_W32E-8VZr4lmjkihXhu95FMQjh9E",
   },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 import AuthProviderWrapper from "@/components/AuthProviderWrapper";
