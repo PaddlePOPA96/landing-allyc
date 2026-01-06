@@ -51,7 +51,7 @@ export default function Hero() {
 
             <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-white/80 leading-none tracking-tighter drop-shadow-xl mb-2"
               style={{ fontFamily: "'Arial Black', sans-serif" }}>
-              ALLYC
+              RRQ ALLYC
             </h1>
 
             <h2 className="text-4xl md:text-6xl font-black text-white/50 leading-none tracking-tighter"

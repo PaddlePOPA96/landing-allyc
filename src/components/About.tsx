@@ -5,8 +5,8 @@ export default function About() {
                 <h2 className="text-3xl font-bold mb-8 text-sky-600">About Me</h2>
                 <div className="prose prose-lg mx-auto text-gray-600">
                     <p className="mb-4">
-                        Hello! I&apos;m Jasmine Allyc. Welcome to my official landing page.
-                        I create content and share my life experiences.
+                        Hello! I&apos;m Jasmine Allyc, widely known as <span className="font-bold text-sky-600">RRQ Allyc</span>. Welcome to my official landing page.
+                        I create content and share my life experiences as a streamer for <span className="font-bold">Team RRQ</span>.
                     </p>
                     <p>
                         Follow along on my social media channels to see what I&apos;m up to!

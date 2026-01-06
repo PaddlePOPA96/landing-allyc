@@ -21,7 +21,7 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   metadataBase: new URL("https://allyc.vercel.app"),
   alternates: {
-    canonical: "/",
+    canonical: "https://allyc.vercel.app",
   },
   title: {
     default: "RRQ Allyc - Valorant Streamer & Content Creator",
